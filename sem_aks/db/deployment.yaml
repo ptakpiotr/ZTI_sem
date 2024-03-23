@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg-db
+spec:
+  selector:
+    matchLabels:
+      app: pg-db
+  template:
+    metadata:
+      labels:
+        app: pg-db
+    spec:
+      containers:
+        - name: pg-db
+          image: postgres:14
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: db-cm
+                  key: POSTGRES_PASSWORD

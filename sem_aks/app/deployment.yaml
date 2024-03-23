@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: pioptak/sem-docker
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-cm
+                  key: DB_HOSTNAME
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: app-cm
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: app-cm
+                  key: DB_PASSWORD
