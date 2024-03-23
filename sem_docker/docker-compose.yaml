@@ -1,0 +1,12 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8099:8080"
+    environment:
+      - DB_HOSTNAME=YOUR_DB_HOSTNAME_HERE
+      - DB_USER=YOUR_DB_USERNAME_HERE
+      - DB_PASSWORD=YOUR_PASSWORD_HERE
