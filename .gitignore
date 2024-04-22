@@ -32,9 +32,11 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
 
 ### Mac OS ###
 .DS_Store
 
 config-map.yaml
+.python_packages
+__pycache__
+.venv
